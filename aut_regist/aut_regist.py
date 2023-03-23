@@ -27,38 +27,30 @@ veebisait.title("Registreerimine ja autoriseerimine")
 
 
 #меню
-def func(i):
-    tabs.select(i)
+mainmenu = Menu(veebisait) 
+veebisait.config(menu=mainmenu) 
+helpmenu = Menu(mainmenu, tearoff=0)
+helpmenu.add_command(label="Muuda salasõna")
+helpmenu.add_command(label="Parooli taastamine")
+autormenu = Menu(mainmenu, tearoff=0)
+autormenu.add_command(label="Logi sisse")
+regimenu = Menu(mainmenu, tearoff=0)
+regimenu.add_command(label="Kontot looma")
+(Labeltext="Sinu kasutajanimi: ", font="Courier 20", bg="mediumslateblue", command=registreemi)
+lbl_kasutajanimi.pack(pady=8)
+lbl_kasutajanimi = Label(veebisait, text="Sinu kasutajanimi: ", font="Courier 20", bg="mediumslateblue")
+lbl_kasutajanimi.pack(pady=8)        #отступ
+entry_kasutajanimi = Entry(veebisait, font="Courier 20", bg="slategrey", fg="darkslateblue")
+entry_kasutajanimi.pack()
+regimenu.add_command(label="Parooli loomine")
+mainmenu.add_cascade(label="Registreerimine",
+                     menu=regimenu)
+mainmenu.add_cascade(label="Autoriseerimine",
+                     menu=autormenu)
+mainmenu.add_cascade(label="Saidi tugi",
+                     menu=helpmenu)
+veebisait.mainloop() 
 
-
-
-
-M=Menu(veebisait)
-veebisait.config(menu=M)
-m1=Menu(M)
-M.add_cascade(label="Tabs", menu=m1)
-m1.add_command(label="Registreerimine", accelerator="Command+R", command=lambda:func(0))
-m1.add_command(label="Autoriseerimine", accelerator="Command+A", command=lambda:func(1))
-m1.add_command(label="Saidi tugi", accelerator="Command+S", command=lambda:func(2))
-m1.add_separator()
-
-
-
-
-tabs=ttk.Notebook(veebisait)
-text=["Registreerimine","Autoriseerimine","Saidi tugi"]
-
-tab1=Frame(tabs)
-tab2=Frame(tabs)
-tab3=Frame(tabs)
-
-
-
-tabs.add(tab1, text=text[0])
-tabs.add(tab2, text=text[1])
-tabs.add(tab3, text=text[2])
-
-tabs.pack(fill="both")
 
 
 
@@ -74,6 +66,45 @@ def registreemi():
     else:
         kasutaja[user] = passw
         lbl_status.config(text="Kasutaja registreerimine õnnestus")
+
+
+#def func(i):
+#    tabs.select(i)
+
+
+
+
+#M=Menu(veebisait)
+#veebisait.config(menu=M)
+#m1=Menu(M)
+#M.add_cascade(label="Tabs", menu=m1)
+#m1.add_command(label="Registreerimine", accelerator="Command+R", command=lambda:func(0))
+#m1.add_command(label="Autoriseerimine", accelerator="Command+A", command=lambda:func(1))
+#m1.add_command(label="Saidi tugi", accelerator="Command+S", command=lambda:func(2))
+#m1.add_separator()
+
+
+
+
+#tabs=ttk.Notebook(veebisait)
+#text=["Registreerimine","Autoriseerimine","Saidi tugi"]
+
+#tab1=Frame(tabs)
+#tab2=Frame(tabs)
+#tab3=Frame(tabs)
+
+
+
+#tabs.add(tab1, text=text[0])
+#tabs.add(tab2, text=text[1])
+#tabs.add(tab3, text=text[2])
+
+#tabs.pack(fill="both")
+
+
+
+
+
 
 
 
